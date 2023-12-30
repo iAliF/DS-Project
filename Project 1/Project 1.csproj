@@ -40,7 +40,10 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Notation\BaseNotation.cs" />
+        <Compile Include="Notation\Infix.cs" />
         <Compile Include="Notation\NotationType.cs" />
+        <Compile Include="Notation\Postfix.cs" />
+        <Compile Include="Notation\Prefix.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
