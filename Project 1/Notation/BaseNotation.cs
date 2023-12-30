@@ -4,26 +4,26 @@ namespace Project_1.Notation
 {
     public abstract class BaseNotation
     {
-        public Dictionary<string, int> PRIORITY = new Dictionary<string, int>
+        public Dictionary<char, int> PRIORITY = new Dictionary<char, int>
         {
-            { "(", 0 },
-            { "!", 1 },
-            { "^", 2 },
-            { "*", 3 },
-            { "/", 3 },
-            { "%", 3 },
-            { "+", 4 },
-            { "-", 4 },
-            { "<", 5 },
-            { ">", 5 },
-            { "<=", 5 },
-            { ">=", 5 },
-            { "==", 6 },
-            { "!=", 6 },
-            { "&&", 7 },
-            { "and", 7 },
-            { "||", 8 },
-            { "or", 8 },
+            { '(', 0 },
+            { '!', 1 },
+            { '^', 2 },
+            { '*', 3 },
+            { '/', 3 },
+            { '%', 3 },
+            { '+', 4 },
+            { '-', 4 },
+            { '<', 5 },
+            { '>', 5 },
+            // { "<=", 5 },
+            // { ">=", 5 },
+            // { "==", 6 },
+            // { "!=", 6 },
+            // { "&&", 7 },
+            // { "and", 7 },
+            // { "||", 8 },
+            // { "or", 8 },
         };
 
         private readonly string _value;
