@@ -37,6 +37,11 @@ namespace Project_1.Notation
 
         public abstract BaseNotation convert(NotationType to);
 
+        public int GetPriority(char c)
+        {
+            return PRIORITY.ContainsKey(c) ? PRIORITY[c] : 10;
+        }
+
         public override string ToString()
         {
             return $"({_value})";
