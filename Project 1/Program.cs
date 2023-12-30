@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DS_Project
+namespace Project_1
 {
     internal class Program
     {
