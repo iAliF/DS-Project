@@ -28,7 +28,7 @@ namespace Project_1.Notation
 
         private readonly string _value;
 
-        public string value => value;
+        public string value => _value;
 
         protected BaseNotation(string value)
         {
