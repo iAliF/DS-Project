@@ -50,6 +50,14 @@ namespace Utils.Stack
             return _array[_top--];
         }
 
+        public TType TopItem()
+        {
+            if (IsEmpty())
+                throw new StackEmptyException();
+            
+            return _array[_top];
+        }
+
         public void Clear()
         {
             _top = -1;
