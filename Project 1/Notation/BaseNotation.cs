@@ -44,7 +44,7 @@ namespace Project_1.Notation
 
         public override string ToString()
         {
-            return $"({_value})";
+            return $"{this.GetType().Name}({_value})";
         }
     }
 }
