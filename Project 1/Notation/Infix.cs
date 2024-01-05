@@ -10,7 +10,16 @@ namespace Project_1.Notation
 
         public override BaseNotation Convert(NotationType to)
         {
-            return this;
+            switch (to)
+            {
+                case NotationType.Postfix:
+                    return ToPostFix();
+                case NotationType.Prefix:
+                    return ToPrefix();
+                case NotationType.Infix:
+                default:
+                    return this;
+            }
         }
 
         public Postfix ToPostFix()
