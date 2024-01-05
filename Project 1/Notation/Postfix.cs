@@ -31,5 +31,24 @@ namespace Project_1.Notation
 
             return new Infix(stack.Pop());
         }
+
+        public Prefix ToPrefix()
+        {
+            var stack = new Stack<string>(Value.Length); // Stack for operands
+
+            foreach (var token in Value)
+            {
+                if (Utils.Utils.IsAlphaNum(token))
+                    stack.Push(token.ToString());
+                else
+                {
+                    var op1 = stack.Pop();
+                    var op2 = stack.Pop();
+                    stack.Push($"{token}{op2}{op1}");
+                }
+            }
+
+            return new Prefix(stack.Pop());
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace Project_1
 
             Console.WriteLine($"Value: {postfix.Value}");
             Console.WriteLine($"Infix: {postfix.ToInfix().Value}");
+            Console.WriteLine($"Prefix: {postfix.ToPrefix().Value}");
         }
     }
 }
