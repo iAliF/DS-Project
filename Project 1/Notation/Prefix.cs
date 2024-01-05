@@ -1,4 +1,5 @@
-﻿using Utils.Stack;
+﻿using System;
+using Utils.Stack;
 
 namespace Project_1.Notation
 {
@@ -10,7 +11,16 @@ namespace Project_1.Notation
 
         public override BaseNotation Convert(NotationType to)
         {
-            return this;
+            switch (to)
+            {
+                case NotationType.Infix:
+                    return ToInfix();
+                case NotationType.Postfix:
+                    return ToPostfix();
+                case NotationType.Prefix:
+                default:
+                    return this;
+            }
         }
 
         public Infix ToInfix()
