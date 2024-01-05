@@ -9,8 +9,8 @@ namespace Project_1
         {
             Console.WriteLine("<<< Project 1 >>>");
             var infix = new Infix("(a + b) * c - d");
-            Console.WriteLine(infix.ToPrefix());
-            Console.WriteLine("<<< Bye Bye >>>");
+            Console.WriteLine($"PostFix: {infix.ToPostFix().Value}");
+            Console.WriteLine($"Prefix: {infix.ToPrefix().Value}");
         }
     }
 }

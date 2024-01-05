@@ -13,7 +13,7 @@ namespace Project_1.Notation
             return this;
         }
 
-        public Prefix ToPrefix()
+        public Postfix ToPostFix()
         {
             var output = "";
             var stack = new Stack<char>(Value.Length);
@@ -51,7 +51,55 @@ namespace Project_1.Notation
             while (!stack.IsEmpty())
                 output += stack.Pop();
 
-            return new Prefix(output);
+            return new Postfix(output);
+        }
+
+        public Prefix ToPrefix()
+        {
+            var length = Value.Length;
+            var operands = new Stack<string>(length);
+            var operators = new Stack<char>(length);
+
+            foreach (var token in Value)
+            {
+                if (token == '(')
+                    operators.Push(token);
+                else if (token == ')')
+                {
+                    char op;
+                    while (!operators.IsEmpty() && (op = operators.Pop()) != '(')
+                    {
+                        var opr1 = operands.Pop();
+                        var opr2 = operands.Pop();
+                        operands.Push(op + opr2 + opr1);
+                    }
+                }
+                else if (Utils.Utils.IsAlphaNum(token))
+                    operands.Push(token.ToString());
+                else
+                {
+                    if (!operators.IsEmpty() &&
+                        operators.TopItem() != '(' && GetPriority(token) >= GetPriority(operators.TopItem())
+                       )
+                        Add();
+
+                    operators.Push(token);
+                }
+            }
+
+            while (!operators.IsEmpty())
+                Add();
+
+            return new Prefix(operands.Pop());
+
+            // Prevent Duplicate Coding
+            void Add()
+            {
+                var op = operators.Pop();
+                var opr1 = operands.Pop();
+                var opr2 = operands.Pop();
+                operands.Push(op + opr2 + opr1);
+            }
         }
     }
 }
