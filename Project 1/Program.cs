@@ -7,10 +7,18 @@ namespace Project_1
     {
         public static void Main()
         {
-            Console.WriteLine("<<< Project 1 >>>");
+            Console.WriteLine("==== Infix =====");
             var infix = new Infix("(a + b) * c - d");
+
+            Console.WriteLine($"Value: {infix.Value}");
             Console.WriteLine($"PostFix: {infix.ToPostFix().Value}");
             Console.WriteLine($"Prefix: {infix.ToPrefix().Value}");
+            
+            Console.WriteLine("\n==== Postfix =====");
+            var postfix = new Postfix("ab*c+");
+
+            Console.WriteLine($"Value: {postfix.Value}");
+            Console.WriteLine($"Infix: {postfix.ToInfix().Value}");
         }
     }
 }
