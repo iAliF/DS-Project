@@ -8,7 +8,7 @@ namespace Project_1.Notation
         {
         }
 
-        public override BaseNotation convert(NotationType to)
+        public override BaseNotation Convert(NotationType to)
         {
             return this;
         }
@@ -16,10 +16,10 @@ namespace Project_1.Notation
         public Prefix ToPrefix()
         {
             var output = "";
-            var stack = new Stack<char>(value.Length);
+            var stack = new Stack<char>(Value.Length);
 
             // Check each character
-            foreach (var token in value)
+            foreach (var token in Value)
                 // If char is alphanum (operand)
                 if (Utils.Utils.IsAlphaNum(token))
                 {

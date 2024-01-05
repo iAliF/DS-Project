@@ -6,7 +6,7 @@
         {
         }
 
-        public override BaseNotation convert(NotationType to)
+        public override BaseNotation Convert(NotationType to)
         {
             return this;
         }

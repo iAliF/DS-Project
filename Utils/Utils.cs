@@ -1,6 +1,6 @@
 ﻿namespace Utils
 {
-    public class Utils
+    public static class Utils
     {
         public static bool IsAlphaNum(char c)
         {
