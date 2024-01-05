@@ -20,6 +20,12 @@ namespace Project_1
             Console.WriteLine($"Value: {postfix.Value}");
             Console.WriteLine($"Infix: {postfix.ToInfix().Value}");
             Console.WriteLine($"Prefix: {postfix.ToPrefix().Value}");
+            
+            Console.WriteLine("\n==== Prefix =====");
+            var prefix = new Prefix("-*+abcd");
+
+            Console.WriteLine($"Value: {prefix.Value}");
+            Console.WriteLine($"Infix: {prefix.ToInfix().Value}");
         }
     }
 }
