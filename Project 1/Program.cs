@@ -26,6 +26,7 @@ namespace Project_1
 
             Console.WriteLine($"Value: {prefix.Value}");
             Console.WriteLine($"Infix: {prefix.ToInfix().Value}");
+            Console.WriteLine($"Postfix: {prefix.ToPostfix().Value}");
         }
     }
 }
