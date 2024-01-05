@@ -1,32 +1,58 @@
 ﻿using System;
+using System.Collections.Generic;
 using Project_1.Notation;
 
 namespace Project_1
 {
     internal static class Program
     {
+        private static readonly string[] _options =
+        {
+            "Infix to Prefix",
+            "Infix to Postfix",
+            "Prefix to Infix",
+            "Prefix to Postfix",
+            "Postfix to Infix",
+            "Postfix to Prefix",
+            "Exit"
+        };
+
+        private static string GetHelpText()
+        {
+            var output = "";
+            for (int i = 0; i < _options.Length; i++)
+                output += $"{i + 1}. {_options[i]}\n";
+
+            return output;
+        }
+
+        private static int GetOption()
+        {
+            while (true)
+            {
+                Console.Write("> ");
+                var input = Console.ReadLine();
+
+                if (int.TryParse(input, out var option) && option >= 1 && option <= 7)
+                    return option;
+
+                Console.WriteLine("Invalid input.");
+            }
+        }
+
         public static void Main()
         {
-            Console.WriteLine("==== Infix =====");
-            var infix = new Infix("(a + b) * c - d");
+            var helpText = GetHelpText();
+            Console.WriteLine(helpText);
 
-            Console.WriteLine($"Value: {infix.Value}");
-            Console.WriteLine($"PostFix: {infix.ToPostFix().Value}");
-            Console.WriteLine($"Prefix: {infix.ToPrefix().Value}");
-            
-            Console.WriteLine("\n==== Postfix =====");
-            var postfix = new Postfix("ab*c+");
+            int option;
+            while ((option = GetOption()) != 7)
+            {
+                Console.WriteLine($"You chose option {option}.");
+            }
 
-            Console.WriteLine($"Value: {postfix.Value}");
-            Console.WriteLine($"Infix: {postfix.ToInfix().Value}");
-            Console.WriteLine($"Prefix: {postfix.ToPrefix().Value}");
-            
-            Console.WriteLine("\n==== Prefix =====");
-            var prefix = new Prefix("-*+abcd");
-
-            Console.WriteLine($"Value: {prefix.Value}");
-            Console.WriteLine($"Infix: {prefix.ToInfix().Value}");
-            Console.WriteLine($"Postfix: {prefix.ToPostfix().Value}");
+            Console.WriteLine("Press any key to exit ...");
+            Console.ReadKey();
         }
     }
 }
