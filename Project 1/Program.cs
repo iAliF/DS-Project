@@ -20,10 +20,11 @@ namespace Project_1
         private static string GetHelpText()
         {
             var output = "";
-
-            for (var i = 0; i < Options.Length; i++)
+            int i;
+            for (i = 0; i < Options.Length; i++)
                 output += $"{i + 1}. {Options[i].name}\n";
 
+            output += $"{i + 1}. Exit\n"; // Exit option
             return output;
         }
 
