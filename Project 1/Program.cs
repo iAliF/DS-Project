@@ -41,7 +41,7 @@ namespace Project_1
                 Console.WriteLine("Invalid input.");
             }
         }
-        
+
         private static BaseNotation InitNotation(NotationType type, string value)
         {
             switch (type)
@@ -57,6 +57,24 @@ namespace Project_1
             }
         }
 
+        private static string GetExpression()
+        {
+            Console.Write("Enter expression: ");
+
+            string exp;
+            while ((exp = Console.ReadLine()?.Trim())?.Length == 0)
+                Console.Write("Enter expression: ");
+
+            return exp;
+        }
+
+        private static void GetKey(bool exit = false)
+        {
+            var to = exit ? "exit" : "continue";
+            Console.WriteLine($"Press any key to {to} ...");
+            Console.ReadKey();
+        }
+
         public static void Main()
         {
             var helpText = GetHelpText();
@@ -65,11 +83,24 @@ namespace Project_1
             int option;
             while ((option = GetOption()) != 7)
             {
-                Console.WriteLine($"You chose option {option}.");
+                var data = _options[option - 1]; // Get converting data 
+                var exp = GetExpression();
+
+                try
+                {
+                    var result = InitNotation(data.from, exp).Convert(data.to);
+                    Console.WriteLine($"Result: {result.Value}");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"Invalid input.");
+                }
+
+                GetKey();
+                Console.WriteLine($"\n{helpText}"); // Show help text again
             }
 
-            Console.WriteLine("Press any key to exit ...");
-            Console.ReadKey();
+            GetKey(true);
         }
     }
 }
