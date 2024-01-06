@@ -6,22 +6,24 @@ namespace Project_1
 {
     internal static class Program
     {
-        private static readonly string[] _options =
+        // List of ValueTuples
+        // Tuple => Name, From, To
+        private static readonly (string name, NotationType from, NotationType to)[] _options =
         {
-            "Infix to Prefix",
-            "Infix to Postfix",
-            "Prefix to Infix",
-            "Prefix to Postfix",
-            "Postfix to Infix",
-            "Postfix to Prefix",
-            "Exit"
+            ("Infix to Prefix", NotationType.Infix, NotationType.Prefix),
+            ("Infix to Postfix", NotationType.Infix, NotationType.Prefix),
+            ("Prefix to Infix", NotationType.Infix, NotationType.Prefix),
+            ("Prefix to Postfix", NotationType.Infix, NotationType.Prefix),
+            ("Postfix to Infix", NotationType.Infix, NotationType.Prefix),
+            ("Postfix to Prefix", NotationType.Infix, NotationType.Prefix)
         };
 
         private static string GetHelpText()
         {
             var output = "";
-            for (int i = 0; i < _options.Length; i++)
-                output += $"{i + 1}. {_options[i]}\n";
+
+            for (var i = 0; i < _options.Length; i++)
+                output += $"{i + 1}. {_options[i].name}\n";
 
             return output;
         }
