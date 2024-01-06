@@ -41,6 +41,21 @@ namespace Project_1
                 Console.WriteLine("Invalid input.");
             }
         }
+        
+        private static BaseNotation InitNotation(NotationType type, string value)
+        {
+            switch (type)
+            {
+                case NotationType.Infix:
+                    return new Infix(value);
+                case NotationType.Prefix:
+                    return new Prefix(value);
+                case NotationType.Postfix:
+                    return new Postfix(value);
+                default:
+                    throw new Exception("Invalid notation type.");
+            }
+        }
 
         public static void Main()
         {
