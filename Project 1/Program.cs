@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Project_1.Notation;
 
 namespace Project_1
@@ -8,22 +7,22 @@ namespace Project_1
     {
         // List of ValueTuples
         // Tuple => Name, From, To
-        private static readonly (string name, NotationType from, NotationType to)[] _options =
+        private static readonly (string name, NotationType from, NotationType to)[] Options =
         {
             ("Infix to Prefix", NotationType.Infix, NotationType.Prefix),
-            ("Infix to Postfix", NotationType.Infix, NotationType.Prefix),
-            ("Prefix to Infix", NotationType.Infix, NotationType.Prefix),
-            ("Prefix to Postfix", NotationType.Infix, NotationType.Prefix),
-            ("Postfix to Infix", NotationType.Infix, NotationType.Prefix),
-            ("Postfix to Prefix", NotationType.Infix, NotationType.Prefix)
+            ("Infix to Postfix", NotationType.Infix, NotationType.Postfix),
+            ("Prefix to Infix", NotationType.Prefix, NotationType.Infix),
+            ("Prefix to Postfix", NotationType.Prefix, NotationType.Postfix),
+            ("Postfix to Infix", NotationType.Postfix, NotationType.Infix),
+            ("Postfix to Prefix", NotationType.Postfix, NotationType.Prefix)
         };
 
         private static string GetHelpText()
         {
             var output = "";
 
-            for (var i = 0; i < _options.Length; i++)
-                output += $"{i + 1}. {_options[i].name}\n";
+            for (var i = 0; i < Options.Length; i++)
+                output += $"{i + 1}. {Options[i].name}\n";
 
             return output;
         }
@@ -83,7 +82,7 @@ namespace Project_1
             int option;
             while ((option = GetOption()) != 7)
             {
-                var data = _options[option - 1]; // Get converting data 
+                var data = Options[option - 1]; // Get converting data 
                 var exp = GetExpression();
 
                 try
