@@ -8,7 +8,7 @@ namespace Project_2.GenList
         private readonly object _data; // data: data if node is atomic, dLink if node is sublist
         public Node<TType> Link;
 
-        public Node(NodeType type, object data, Node<TType> link)
+        public Node(NodeType type, object data, Node<TType> link = null)
         {
             Type = type;
             _data = data;
