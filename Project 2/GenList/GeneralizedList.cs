@@ -2,8 +2,8 @@
 {
     public class GeneralizedList<TType>
     {
-        private readonly Node<TType> _head = null;
-        private Node<TType> _last = null;
+        private readonly Node<TType> _head;
+        private Node<TType> _last;
 
         public GeneralizedList()
         {
