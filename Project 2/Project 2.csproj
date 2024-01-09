@@ -39,6 +39,9 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="GenList\GeneralizedList.cs" />
+        <Compile Include="GenList\Node.cs" />
+        <Compile Include="GenList\NodeType.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
