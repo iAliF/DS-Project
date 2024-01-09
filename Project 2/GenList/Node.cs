@@ -1,4 +1,6 @@
-﻿namespace Project_2.GenList
+﻿using System;
+
+namespace Project_2.GenList
 {
     public class Node<TType>
     {
@@ -13,8 +15,26 @@
             Link = link;
         }
 
-        public TType Data => (TType)_data;
+        public TType Data
+        {
+            get
+            {
+                if (Type != NodeType.Atomic)
+                    throw new Exception("Non-atomic node has no data");
 
-        public Node<TType> DLink => (Node<TType>)_data;
+                return (TType)_data;
+            }
+        }
+
+        public Node<TType> DLink
+        {
+            get
+            {
+                if (Type != NodeType.SubList)
+                    throw new Exception("Atomic node has no DLink");
+
+                return (Node<TType>)_data;
+            }
+        }
     }
 }
