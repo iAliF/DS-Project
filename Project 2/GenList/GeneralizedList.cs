@@ -43,6 +43,7 @@ namespace Project_2.GenList
                 else
                     node.DLink.Print();
 
+                if (node.Link != null && node.Link != _head) Console.Write(", ");
                 node = node.Link;
             }
 
