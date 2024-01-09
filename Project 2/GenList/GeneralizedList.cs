@@ -12,5 +12,18 @@
             _head = node;
             _last = node;
         }
+
+        public void AddNode(Node<TType> node)
+        {
+            _last.Link = node;
+            _last = node;
+            _last.Link = _head;
+        }
+
+        public void AddNode(NodeType type, object data, Node<TType> link)
+        {
+            var node = new Node<TType>(type, data, link);
+            AddNode(node);
+        }
     }
 }
