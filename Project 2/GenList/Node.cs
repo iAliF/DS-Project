@@ -26,14 +26,14 @@ namespace Project_2.GenList
             }
         }
 
-        public Node<TType> DLink
+        public GeneralizedList<TType> DLink
         {
             get
             {
                 if (Type != NodeType.SubList)
                     throw new Exception("Atomic node has no DLink");
 
-                return (Node<TType>)_data;
+                return (GeneralizedList<TType>)_data;
             }
         }
     }
