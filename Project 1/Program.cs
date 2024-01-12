@@ -93,7 +93,7 @@ namespace Project_1
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine($"Invalid input.");
+                    Console.WriteLine("Invalid input.");
                 }
 
                 GetKey();

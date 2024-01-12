@@ -8,14 +8,14 @@ namespace Project_2
         public static void Main()
         {
             Console.WriteLine("<<< Project 2 >>>");
-            
+
             var sublist = new GeneralizedList<int>();
             sublist.AddNode(NodeType.Atomic, 2);
             sublist.AddNode(NodeType.Atomic, 3);
             sublist.AddNode(NodeType.Atomic, 4);
             sublist.Print();
             Console.WriteLine();
-            
+
             var list = new GeneralizedList<int>();
             list.AddNode(NodeType.Atomic, 1);
             list.AddNode(NodeType.SubList, sublist);

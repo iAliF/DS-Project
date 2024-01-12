@@ -70,9 +70,10 @@ namespace Project_1.Notation
             var operators = new Stack<char>(length);
 
             foreach (var token in Value)
-            {
                 if (token == '(')
+                {
                     operators.Push(token);
+                }
                 else if (token == ')')
                 {
                     char op;
@@ -84,7 +85,9 @@ namespace Project_1.Notation
                     }
                 }
                 else if (Utils.Utils.IsAlphaNum(token))
+                {
                     operands.Push(token.ToString());
+                }
                 else
                 {
                     if (!operators.IsEmpty() &&
@@ -94,7 +97,6 @@ namespace Project_1.Notation
 
                     operators.Push(token);
                 }
-            }
 
             while (!operators.IsEmpty())
                 Add();

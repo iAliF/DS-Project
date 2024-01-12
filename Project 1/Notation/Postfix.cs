@@ -1,5 +1,4 @@
-﻿using System;
-using Utils.Stack;
+﻿using Utils.Stack;
 
 namespace Project_1.Notation
 {
@@ -28,16 +27,16 @@ namespace Project_1.Notation
             var stack = new Stack<string>(Value.Length); // Stack for operands
 
             foreach (var token in Value)
-            {
                 if (Utils.Utils.IsAlphaNum(token))
+                {
                     stack.Push(token.ToString());
+                }
                 else
                 {
                     var op1 = stack.Pop();
                     var op2 = stack.Pop();
                     stack.Push($"({op2} {token} {op1})");
                 }
-            }
 
             return new Infix(stack.Pop());
         }
@@ -47,16 +46,16 @@ namespace Project_1.Notation
             var stack = new Stack<string>(Value.Length); // Stack for operands
 
             foreach (var token in Value)
-            {
                 if (Utils.Utils.IsAlphaNum(token))
+                {
                     stack.Push(token.ToString());
+                }
                 else
                 {
                     var op1 = stack.Pop();
                     var op2 = stack.Pop();
                     stack.Push($"{token}{op2}{op1}");
                 }
-            }
 
             return new Prefix(stack.Pop());
         }

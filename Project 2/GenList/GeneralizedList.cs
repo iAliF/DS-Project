@@ -9,7 +9,7 @@ namespace Project_2.GenList
 
         public GeneralizedList()
         {
-            var node = new Node<TType>(NodeType.Atomic, default, null); // Create a dummy node
+            var node = new Node<TType>(NodeType.Atomic, default); // Create a dummy node
             node.Link = node;
             _head = node;
             _last = node;

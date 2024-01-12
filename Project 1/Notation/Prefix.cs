@@ -1,5 +1,4 @@
-﻿using System;
-using Utils.Stack;
+﻿using Utils.Stack;
 
 namespace Project_1.Notation
 {
