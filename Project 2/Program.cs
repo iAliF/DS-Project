@@ -9,18 +9,30 @@ namespace Project_2
         {
             Console.WriteLine("<<< Project 2 >>>");
 
+            var sub = new GeneralizedList<int>();
+            for (int i = 5; i < 8; i++)
+            {
+                sub.AddNode(NodeType.Atomic, i);
+            }
+
             var sublist = new GeneralizedList<int>();
-            sublist.AddNode(NodeType.Atomic, 2);
-            sublist.AddNode(NodeType.Atomic, 3);
-            sublist.AddNode(NodeType.Atomic, 4);
-            sublist.Print();
-            Console.WriteLine();
+            for (int i = 2; i < 5; i++)
+            {
+                sublist.AddNode(NodeType.Atomic, i);
+            }
+
+            sublist.AddNode(NodeType.SubList, sub);
 
             var list = new GeneralizedList<int>();
             list.AddNode(NodeType.Atomic, 1);
             list.AddNode(NodeType.SubList, sublist);
-            list.AddNode(NodeType.Atomic, 5);
+            list.AddNode(NodeType.Atomic, 10);
             list.Print();
+            Console.WriteLine();
+
+            Console.WriteLine($"Depth: {list.Depth()}");
+
+            Console.ReadKey();
         }
     }
 }

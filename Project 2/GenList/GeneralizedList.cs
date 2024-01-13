@@ -49,5 +49,26 @@ namespace Project_2.GenList
 
             Console.Write(">");
         }
+
+        public int Depth(Node<TType> node = null)
+        {
+            if (node == null)
+                node = _head.Link;
+
+            var max = 0;
+            while (node != _head)
+            {
+                if (node.Type == NodeType.SubList)
+                {
+                    var n = node.DLink.Depth();
+                    if (max < n)
+                        max = n;
+                }
+
+                node = node.Link;
+            }
+
+            return max + 1;
+        }
     }
 }
