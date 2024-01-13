@@ -26,7 +26,9 @@ namespace Project_2
             var list = new GeneralizedList<int>();
             list.AddNode(NodeType.Atomic, 1);
             list.AddNode(NodeType.SubList, sublist);
-            list.AddNode(NodeType.Atomic, 10);
+            var a =list.AddNode(NodeType.Atomic, 10);
+            list.Print();
+            list.RemoveNode(a);
             list.Print();
 
             Console.WriteLine($"Depth: {list.Depth()}");

@@ -29,6 +29,29 @@ namespace Project_2.GenList
             var node = new Node<TType>(type, data, link);
             return AddNode(node);
         }
+        
+        public Node<TType> RemoveNode(Node<TType> node)
+        {
+            var last = _head;
+            var thisNode = _head.Link;
+            while (thisNode != _head)
+            {
+                if (thisNode == node)
+                {
+                    last.Link = thisNode.Link; // Remove thisNode from the list
+                    
+                    if (thisNode == _last) // if this node is the last node
+                        _last = last; // Update the last node
+                    
+                    return thisNode; // Node deleted. we're done.
+                }
+
+                last = thisNode;
+                thisNode = thisNode.Link;
+            }
+
+            return null;
+        }
 
         public void Print(Node<TType> node = null, bool endl = true)
         {
