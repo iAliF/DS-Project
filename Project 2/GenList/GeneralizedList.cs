@@ -29,7 +29,7 @@ namespace Project_2.GenList
             var node = new Node<TType>(type, data, link);
             return AddNode(node);
         }
-        
+
         public Node<TType> RemoveNode(Node<TType> node)
         {
             var last = _head;
@@ -39,10 +39,10 @@ namespace Project_2.GenList
                 if (thisNode == node)
                 {
                     last.Link = thisNode.Link; // Remove thisNode from the list
-                    
+
                     if (thisNode == _last) // if this node is the last node
                         _last = last; // Update the last node
-                    
+
                     return thisNode; // Node deleted. we're done.
                 }
 
@@ -116,6 +116,21 @@ namespace Project_2.GenList
             }
 
             return sum;
+        }
+
+        public void DeleteNodeByData(TType data)
+        {
+            var node = _head.Link;
+
+            while (node != _head)
+            {
+                if (node.Type == NodeType.Atomic && node.Data.Equals(data))
+                    RemoveNode(node);
+                else if (node.Type == NodeType.SubList)
+                    node.DLink.DeleteNodeByData(data);
+                
+                node = node.Link;
+            }
         }
     }
 }
