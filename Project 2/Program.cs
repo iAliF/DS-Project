@@ -30,6 +30,7 @@ namespace Project_2
             list.Print();
 
             Console.WriteLine($"Depth: {list.Depth()}");
+            Console.WriteLine($"Sum: {list.Sum()}");
 
             Console.ReadKey();
         }

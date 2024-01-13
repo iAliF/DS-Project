@@ -72,5 +72,27 @@ namespace Project_2.GenList
 
             return max + 1;
         }
+
+        public int Sum(Node<TType> node = null)
+        {
+            if (typeof(TType) != typeof(int))
+                throw new Exception("Type must be int");
+
+            if (node == null)
+                node = _head.Link;
+
+            var sum = 0;
+            while (node != _head)
+            {
+                if (node.Type == NodeType.SubList)
+                    sum += node.DLink.Sum();
+                else
+                    sum += Convert.ToInt32(node.Data);
+
+                node = node.Link;
+            }
+
+            return sum;
+        }
     }
 }
