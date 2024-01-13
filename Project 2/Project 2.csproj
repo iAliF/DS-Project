@@ -42,6 +42,8 @@
         <Compile Include="GenList\GeneralizedList.cs" />
         <Compile Include="GenList\GenNode.cs" />
         <Compile Include="GenList\NodeType.cs" />
+        <Compile Include="LinkList\LinkList.cs" />
+        <Compile Include="LinkList\LinkNode.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
@@ -50,9 +52,6 @@
         <Project>{43f8d33d-1a69-42b7-be49-95704e523b7c}</Project>
         <Name>Utils</Name>
       </ProjectReference>
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="LinkList\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
