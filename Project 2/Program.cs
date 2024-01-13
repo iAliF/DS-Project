@@ -28,7 +28,6 @@ namespace Project_2
             list.AddNode(NodeType.SubList, sublist);
             list.AddNode(NodeType.Atomic, 10);
             list.Print();
-            Console.WriteLine();
 
             Console.WriteLine($"Depth: {list.Depth()}");
 

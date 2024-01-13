@@ -30,7 +30,7 @@ namespace Project_2.GenList
             return AddNode(node);
         }
 
-        public void Print(Node<TType> node = null)
+        public void Print(Node<TType> node = null, bool endl = true)
         {
             if (node == null)
                 node = _head.Link;
@@ -41,13 +41,15 @@ namespace Project_2.GenList
                 if (node.Type == NodeType.Atomic)
                     Console.Write(node.Data);
                 else
-                    node.DLink.Print();
+                    node.DLink.Print(endl: false);
 
                 if (node.Link != null && node.Link != _head) Console.Write(", ");
                 node = node.Link;
             }
 
             Console.Write(">");
+
+            if (endl) Console.WriteLine();
         }
 
         public int Depth(Node<TType> node = null)
