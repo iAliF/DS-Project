@@ -4,46 +4,46 @@ namespace Project_2.GenList
 {
     public class GeneralizedList<TType>
     {
-        private readonly Node<TType> _head;
-        private Node<TType> _last;
+        private readonly GenNode<TType> _head;
+        private GenNode<TType> _last;
 
         public GeneralizedList()
         {
-            var node = new Node<TType>(NodeType.Atomic, default); // Create a dummy node
+            var node = new GenNode<TType>(NodeType.Atomic, default); // Create a dummy genNode
             node.Link = node;
             _head = node;
             _last = node;
         }
 
-        public Node<TType> AddNode(Node<TType> node)
+        public GenNode<TType> AddNode(GenNode<TType> genNode)
         {
-            _last.Link = node;
-            _last = node;
+            _last.Link = genNode;
+            _last = genNode;
             _last.Link = _head;
 
-            return node;
+            return genNode;
         }
 
-        public Node<TType> AddNode(NodeType type, object data, Node<TType> link = null)
+        public GenNode<TType> AddNode(NodeType type, object data, GenNode<TType> link = null)
         {
-            var node = new Node<TType>(type, data, link);
+            var node = new GenNode<TType>(type, data, link);
             return AddNode(node);
         }
 
-        public Node<TType> RemoveNode(Node<TType> node)
+        public GenNode<TType> RemoveNode(GenNode<TType> genNode)
         {
             var last = _head;
             var thisNode = _head.Link;
             while (thisNode != _head)
             {
-                if (thisNode == node)
+                if (thisNode == genNode)
                 {
                     last.Link = thisNode.Link; // Remove thisNode from the list
 
-                    if (thisNode == _last) // if this node is the last node
-                        _last = last; // Update the last node
+                    if (thisNode == _last) // if this genNode is the last genNode
+                        _last = last; // Update the last genNode
 
-                    return thisNode; // Node deleted. we're done.
+                    return thisNode; // GenNode deleted. we're done.
                 }
 
                 last = thisNode;
@@ -53,21 +53,21 @@ namespace Project_2.GenList
             return null;
         }
 
-        public void Print(Node<TType> node = null, bool endl = true)
+        public void Print(GenNode<TType> genNode = null, bool endl = true)
         {
-            if (node == null)
-                node = _head.Link;
+            if (genNode == null)
+                genNode = _head.Link;
 
             Console.Write("<");
-            while (node != _head)
+            while (genNode != _head)
             {
-                if (node.Type == NodeType.Atomic)
-                    Console.Write(node.Data);
+                if (genNode.Type == NodeType.Atomic)
+                    Console.Write(genNode.Data);
                 else
-                    node.DLink.Print(endl: false);
+                    genNode.DLink.Print(endl: false);
 
-                if (node.Link != null && node.Link != _head) Console.Write(", ");
-                node = node.Link;
+                if (genNode.Link != null && genNode.Link != _head) Console.Write(", ");
+                genNode = genNode.Link;
             }
 
             Console.Write(">");
@@ -75,44 +75,44 @@ namespace Project_2.GenList
             if (endl) Console.WriteLine();
         }
 
-        public int Depth(Node<TType> node = null)
+        public int Depth(GenNode<TType> genNode = null)
         {
-            if (node == null)
-                node = _head.Link;
+            if (genNode == null)
+                genNode = _head.Link;
 
             var max = 0;
-            while (node != _head)
+            while (genNode != _head)
             {
-                if (node.Type == NodeType.SubList)
+                if (genNode.Type == NodeType.SubList)
                 {
-                    var n = node.DLink.Depth();
+                    var n = genNode.DLink.Depth();
                     if (max < n)
                         max = n;
                 }
 
-                node = node.Link;
+                genNode = genNode.Link;
             }
 
             return max + 1;
         }
 
-        public int Sum(Node<TType> node = null)
+        public int Sum(GenNode<TType> genNode = null)
         {
             if (typeof(TType) != typeof(int))
                 throw new Exception("Type must be int");
 
-            if (node == null)
-                node = _head.Link;
+            if (genNode == null)
+                genNode = _head.Link;
 
             var sum = 0;
-            while (node != _head)
+            while (genNode != _head)
             {
-                if (node.Type == NodeType.SubList)
-                    sum += node.DLink.Sum();
+                if (genNode.Type == NodeType.SubList)
+                    sum += genNode.DLink.Sum();
                 else
-                    sum += Convert.ToInt32(node.Data);
+                    sum += Convert.ToInt32(genNode.Data);
 
-                node = node.Link;
+                genNode = genNode.Link;
             }
 
             return sum;

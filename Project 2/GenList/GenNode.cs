@@ -2,13 +2,13 @@
 
 namespace Project_2.GenList
 {
-    public class Node<TType>
+    public class GenNode<TType>
     {
         private readonly object _data; // data: data if node is atomic, dLink if node is sublist
         public readonly NodeType Type;
-        public Node<TType> Link;
+        public GenNode<TType> Link;
 
-        public Node(NodeType type, object data, Node<TType> link = null)
+        public GenNode(NodeType type, object data, GenNode<TType> link = null)
         {
             Type = type;
             _data = data;
