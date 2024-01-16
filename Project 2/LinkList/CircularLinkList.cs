@@ -2,12 +2,12 @@
 
 namespace Project_2.LinkList
 {
-    public class LinkList<TType>
+    public class CircularLinkList<TType>
     {
         private LinkNode<TType> _head;
         private LinkNode<TType> _last;
 
-        public LinkList()
+        public CircularLinkList()
         {
             var node = new LinkNode<TType>(default);
             node.RLink = node;
