@@ -150,5 +150,26 @@ namespace Project_2.GenList
 
             return length;
         }
+        
+        public TType[] FetchAllNodes()
+        {
+            var array = new TType[Length()];
+            var index = 0;
+            var p = _head;
+            
+            while (p != _head)
+            {
+                if (p.Type == NodeType.Atomic)
+                    array[index++] = p.Data;
+                else if (p.Type == NodeType.SubList)
+                    // p.DLink.FetchAllNodes().CopyTo(array, index);
+                    foreach (var data in p.DLink.FetchAllNodes())
+                        array[index++] = data;
+                
+                p = p.Link;
+            }
+
+            return array;
+        }
     }
 }
