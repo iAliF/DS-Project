@@ -1,5 +1,6 @@
 ﻿using System;
 using Project_2.GenList;
+using Project_2.LinkList;
 
 namespace Project_2
 {
@@ -17,27 +18,26 @@ namespace Project_2
             }
 
             var sublist = new GeneralizedList<int>();
-            for (int i = 2; i < 5; i++)
+            for (int i = 6; i > 2; i--)
             {
                 sublist.AddNode(NodeType.Atomic, i);
-                sublist.AddNode(NodeType.Atomic, 11);
             }
 
             sublist.AddNode(NodeType.SubList, sub);
 
             var list = new GeneralizedList<int>();
             list.AddNode(NodeType.Atomic, 1);
-            list.AddNode(NodeType.Atomic, 11);
             list.AddNode(NodeType.SubList, sublist);
             list.AddNode(NodeType.Atomic, 10);
-            list.AddNode(NodeType.Atomic, 11);
+            
             list.Print();
-            list.DeleteNodeByData(11);
-            list.Print();
-
             Console.WriteLine($"Depth: {list.Depth()}");
             Console.WriteLine($"Sum: {list.Sum()}");
-
+            Console.WriteLine($"Length: {list.Length()}");
+            Console.WriteLine($"Fetched Nodes: {string.Join(", ", list.FetchAllNodes())}");
+            Console.Write("Sorted Data: ");
+            list.SortedNodes().Print();
+            
             Console.ReadKey();
         }
     }

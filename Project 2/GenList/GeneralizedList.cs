@@ -1,4 +1,5 @@
 ﻿using System;
+using Project_2.LinkList;
 
 namespace Project_2.GenList
 {
@@ -128,7 +129,7 @@ namespace Project_2.GenList
                     RemoveNode(node);
                 else if (node.Type == NodeType.SubList)
                     node.DLink.DeleteNodeByData(data);
-                
+
                 node = node.Link;
             }
         }
@@ -137,26 +138,26 @@ namespace Project_2.GenList
         {
             var length = 0;
             var p = _head.Link;
-            
+
             while (p != _head)
             {
                 if (p.Type == NodeType.Atomic)
                     length++;
                 else if (p.Type == NodeType.SubList)
                     length += p.DLink.Length();
-                
+
                 p = p.Link;
             }
 
             return length;
         }
-        
+
         public TType[] FetchAllNodes()
         {
             var array = new TType[Length()];
             var index = 0;
-            var p = _head;
-            
+            var p = _head.Link;
+
             while (p != _head)
             {
                 if (p.Type == NodeType.Atomic)
@@ -165,11 +166,38 @@ namespace Project_2.GenList
                     // p.DLink.FetchAllNodes().CopyTo(array, index);
                     foreach (var data in p.DLink.FetchAllNodes())
                         array[index++] = data;
-                
+
                 p = p.Link;
             }
 
             return array;
+        }
+
+        public CircularLinkList<int> SortedNodes()
+        {
+            if (typeof(TType) != typeof(int))
+                throw new Exception("Type must be int");
+
+            // Add them to integer array
+            var length = Length();
+            var array = new int[length];
+            var index = 0;
+            foreach (var item in FetchAllNodes()) array[index++] = Convert.ToInt32(item);
+
+            // Sort data
+            for (var i = 0; i < length; i++)
+            {
+                for (var j = i + 1; j < length; j++)
+                    if (array[i] > array[j])
+                        (array[i], array[j]) = (array[j], array[i]);
+            }
+
+
+            // Add Data To List
+            var list = new CircularLinkList<int>();
+            foreach (var item in array) list.AddNode(item);
+
+            return list;
         }
     }
 }
