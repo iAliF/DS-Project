@@ -132,5 +132,23 @@ namespace Project_2.GenList
                 node = node.Link;
             }
         }
+
+        public int Length()
+        {
+            var length = 0;
+            var p = _head.Link;
+            
+            while (p != _head)
+            {
+                if (p.Type == NodeType.Atomic)
+                    length++;
+                else if (p.Type == NodeType.SubList)
+                    length += p.DLink.Length();
+                
+                p = p.Link;
+            }
+
+            return length;
+        }
     }
 }
