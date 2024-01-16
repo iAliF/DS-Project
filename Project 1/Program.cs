@@ -24,7 +24,8 @@ namespace Project_1
             for (i = 0; i < Options.Length; i++)
                 output += $"{i + 1}. {Options[i].name}\n";
 
-            output += $"{i + 1}. Exit\n"; // Exit option
+            output += $"{++i}. Auto Convert\n"; // Exit option
+            output += $"{++i}. Exit\n"; // Exit option
             return output;
         }
 
@@ -35,7 +36,7 @@ namespace Project_1
                 Console.Write("> ");
                 var input = Console.ReadLine();
 
-                if (int.TryParse(input, out var option) && option >= 1 && option <= 7)
+                if (int.TryParse(input, out var option) && option >= 1 && option <= 8)
                     return option;
 
                 Console.WriteLine("Invalid input.");
@@ -81,15 +82,36 @@ namespace Project_1
             Console.WriteLine(helpText);
 
             int option;
-            while ((option = GetOption()) != 7)
+            while ((option = GetOption()) != 8)
             {
-                var data = Options[option - 1]; // Get converting data 
                 var exp = GetExpression();
 
                 try
                 {
-                    var result = InitNotation(data.from, exp).Convert(data.to);
-                    Console.WriteLine($"Result: {result.Value}");
+                    // Auto Convert
+                    if (option == 7)
+                    {
+                        NotationType from;
+                        if (Utils.Utils.IsOperator(exp[0]))
+                            from = NotationType.Prefix;
+                        else if (Utils.Utils.IsOperator(exp[exp.Length - 1]))
+                            from = NotationType.Postfix;
+                        else
+                            from = NotationType.Infix;
+
+                        Console.WriteLine($"From: {from}");
+                        var to = new[] { NotationType.Infix, NotationType.Prefix, NotationType.Postfix };
+                        foreach (var type in to)
+                            if (type != from)
+                                Console.WriteLine($"{type}: {InitNotation(from, exp).Convert(type).Value}");
+                    }
+                    else
+                    {
+                        // Other Conversions
+                        var data = Options[option - 1]; // Get converting data 
+                        var result = InitNotation(data.from, exp).Convert(data.to);
+                        Console.WriteLine($"Result: {result.Value}");
+                    }
                 }
                 catch (Exception)
                 {
