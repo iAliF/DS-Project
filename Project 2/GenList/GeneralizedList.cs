@@ -54,26 +54,29 @@ namespace Project_2.GenList
             return null;
         }
 
-        public void Print(GenNode<TType> genNode = null, bool endl = true)
+        public string GetString(GenNode<TType> genNode = null)
         {
+            var output = "";
             if (genNode == null)
                 genNode = _head.Link;
 
-            Console.Write("<");
-            while (genNode != _head)
+            while (genNode != _head && genNode != null)
             {
                 if (genNode.Type == NodeType.Atomic)
-                    Console.Write(genNode.Data);
+                    output += genNode.Data.ToString();
                 else
-                    genNode.DLink.Print(endl: false);
+                    output += genNode.DLink.GetString();
 
-                if (genNode.Link != null && genNode.Link != _head) Console.Write(", ");
+                if (genNode.Link != null && genNode.Link != _head) output += ", ";
                 genNode = genNode.Link;
             }
 
-            Console.Write(">");
+            return $"<{output}>";
+        }
 
-            if (endl) Console.WriteLine();
+        public void Print()
+        {
+            Console.WriteLine(GetString());
         }
 
         public int Depth(GenNode<TType> genNode = null)
