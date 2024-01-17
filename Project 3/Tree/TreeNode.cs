@@ -33,9 +33,9 @@ namespace Project_3.Tree
         public void AddChild(int data)
         {
             if (LeftChild == null)
-                LeftChild = new TreeNode(data);
+                LeftChild = new TreeNode(data, this);
             else if (RightChild == null)
-                RightChild = new TreeNode(data);
+                RightChild = new TreeNode(data, this);
             else
                 if (LeftChild.ChildrenCount <= RightChild.ChildrenCount)
                     LeftChild.AddChild(data);
