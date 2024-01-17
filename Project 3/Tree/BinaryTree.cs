@@ -25,5 +25,19 @@
         {
             _root.AddChild(data);
         }
+
+        public int Sum(TreeNode node = null)
+        {
+            if (node == null)
+                node = _root; // Start from root
+            
+            var sum = node.Data;
+            if (node.LeftChild != null)
+                sum += Sum(node.LeftChild);
+            if (node.RightChild != null)
+                sum += Sum(node.RightChild);
+
+            return sum;
+        }
     }
 }
