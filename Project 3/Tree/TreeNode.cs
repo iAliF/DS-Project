@@ -17,6 +17,19 @@ namespace Project_3.Tree
             RightChild = rightChild;
         }
 
+        public int ChildrenCount
+        {
+            get
+            {
+                int count = 0;
+                if (LeftChild != null)
+                    count++;
+                if (RightChild != null)
+                    count++;
+                return count;
+            }
+        }
+
         public void AddChild(int data)
         {
             if (LeftChild == null)
@@ -24,7 +37,10 @@ namespace Project_3.Tree
             else if (RightChild == null)
                 RightChild = new TreeNode(data);
             else
-                Console.WriteLine("Cannot add child to this node ...");
+                if (LeftChild.ChildrenCount <= RightChild.ChildrenCount)
+                    LeftChild.AddChild(data);
+                else
+                    RightChild.AddChild(data);
         }
     }
 }
