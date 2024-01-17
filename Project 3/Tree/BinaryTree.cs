@@ -20,5 +20,10 @@
         {
             _root = root;
         }
+        
+        public void Add(int data)
+        {
+            _root.AddChild(data);
+        }
     }
 }
