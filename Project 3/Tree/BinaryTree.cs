@@ -91,20 +91,38 @@ namespace Project_3.Tree
             return LeavesCount(node.RightChild) + LeavesCount(node.LeftChild);
         }
 
-        public void Preorder()
+        public void PreOrder()
         {
-            Preorder(_root); // Start from root
+            PreOrder(_root); // Start from root
             Console.WriteLine(); // Write a new line when it's done.
         }
 
-        public void Preorder(TreeNode node)
+        public void PreOrder(TreeNode node)
         {
             if (node == null)
                 return;
 
+            // PreOrder => VLR
             Console.Write($"{node.Data} "); // Add space between each data for better readability
-            Preorder(node.LeftChild);
-            Preorder(node.RightChild);
+            PreOrder(node.LeftChild);
+            PreOrder(node.RightChild);
+        }
+
+        public void InOrder()
+        {
+            InOrder(_root); // Start from root
+            Console.WriteLine(); // Write a new line when it's done.
+        }
+
+        public void InOrder(TreeNode node)
+        {
+            if (node == null)
+                return;
+
+            // InOrder => LVR
+            InOrder(node.LeftChild);
+            Console.Write($"{node.Data} ");
+            InOrder(node.RightChild);
         }
     }
 }
