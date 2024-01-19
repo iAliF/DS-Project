@@ -124,5 +124,22 @@ namespace Project_3.Tree
             Console.Write($"{node.Data} ");
             InOrder(node.RightChild);
         }
+        
+        public void PostOrder()
+        {
+            PostOrder(_root); // Start from root
+            Console.WriteLine(); // Write a new line when it's done.
+        }
+
+        public void PostOrder(TreeNode node)
+        {
+            if (node == null)
+                return;
+
+            // PostOrder => LRV
+            PostOrder(node.LeftChild);
+            PostOrder(node.RightChild);
+            Console.Write($"{node.Data} ");
+        }
     }
 }
