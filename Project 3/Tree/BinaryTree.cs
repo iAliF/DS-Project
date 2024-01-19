@@ -1,4 +1,6 @@
-﻿namespace Project_3.Tree
+﻿using System;
+
+namespace Project_3.Tree
 {
     public class BinaryTree
     {
@@ -87,6 +89,22 @@
 
             // Sum of leaves of left/right child
             return LeavesCount(node.RightChild) + LeavesCount(node.LeftChild);
+        }
+
+        public void Preorder()
+        {
+            Preorder(_root); // Start from root
+            Console.WriteLine(); // Write a new line when it's done.
+        }
+
+        public void Preorder(TreeNode node)
+        {
+            if (node == null)
+                return;
+
+            Console.Write($"{node.Data} "); // Add space between each data for better readability
+            Preorder(node.LeftChild);
+            Preorder(node.RightChild);
         }
     }
 }
