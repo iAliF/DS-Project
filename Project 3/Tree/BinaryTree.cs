@@ -56,7 +56,7 @@
 
             return max + 1;
         }
-        
+
         public int NodesCount()
         {
             return NodesCount(_root); // Start from root
@@ -68,6 +68,25 @@
                 return 0;
 
             return NodesCount(node.RightChild) + NodesCount(node.LeftChild) + 1;
+        }
+
+        public int LeavesCount()
+        {
+            return LeavesCount(_root); // Start from root
+        }
+
+        public int LeavesCount(TreeNode node)
+        {
+            // Node doesn't exist (Link to child is null)
+            if (node == null)
+                return 0;
+
+            // If node hasn't any child => It's a leaf
+            if (node.ChildrenCount == 0)
+                return 1; // This method returns 1 every time it finds a leaf (leaves count => sum of these ones)
+
+            // Sum of leaves of left/right child
+            return LeavesCount(node.RightChild) + LeavesCount(node.LeftChild);
         }
     }
 }
