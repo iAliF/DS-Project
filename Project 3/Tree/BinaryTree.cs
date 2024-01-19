@@ -56,5 +56,18 @@
 
             return max + 1;
         }
+        
+        public int NodesCount()
+        {
+            return NodesCount(_root); // Start from root
+        }
+
+        public int NodesCount(TreeNode node)
+        {
+            if (node == null)
+                return 0;
+
+            return NodesCount(node.RightChild) + NodesCount(node.LeftChild) + 1;
+        }
     }
 }
