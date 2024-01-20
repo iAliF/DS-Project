@@ -4,7 +4,7 @@ namespace Project_3.Tree
 {
     public class BinaryTree
     {
-        private readonly TreeNode _root;
+        private TreeNode _root;
 
         public TreeNode Root => _root;
 
@@ -23,9 +23,61 @@ namespace Project_3.Tree
             _root = root;
         }
 
+        public BinaryTree(int[] data)
+        {
+            foreach (var x in data)
+                Add(x);
+        }
+
         public void Add(int data)
         {
-            _root.AddChild(data);
+            Add(new TreeNode(data));
+        }
+
+        public void Add(TreeNode node)
+        {
+            if (_root == null)
+            {
+                _root = node;
+                return;
+            }
+            _root.AddChild(node);
+        }
+
+        public TreeNode DeleteNode(TreeNode node)
+        {
+            return DeleteNode(node, node);
+        }
+
+        public TreeNode DeleteNode(TreeNode thisNode, TreeNode delNode)
+        {
+            if (thisNode.ChildrenCount == 0) // We Find a leaf and swap it's data with the node we want to delete
+            {
+                thisNode.Parent.RemoveChild(thisNode);
+                delNode.Data = thisNode.Data;
+                return delNode;
+            }
+
+            if (thisNode.LeftChild != null)
+                return DeleteNode(thisNode.LeftChild, delNode);
+
+            return DeleteNode(thisNode.RightChild, delNode);
+        }
+
+        public void DeleteNodeByData(int data)
+        {
+            DeleteNodeByData(data, _root);
+        }
+
+        public void DeleteNodeByData(int data, TreeNode node)
+        {
+            if (node == null) return;
+
+            if (node.Data == data)
+                DeleteNode(node);
+
+            DeleteNodeByData(data, node.LeftChild);
+            DeleteNodeByData(data, node.RightChild);
         }
 
         public int Sum(TreeNode node = null)
@@ -124,7 +176,7 @@ namespace Project_3.Tree
             Console.Write($"{node.Data} ");
             InOrder(node.RightChild);
         }
-        
+
         public void PostOrder()
         {
             PostOrder(_root); // Start from root

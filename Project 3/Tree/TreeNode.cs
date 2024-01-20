@@ -30,17 +30,31 @@ namespace Project_3.Tree
             }
         }
 
+        public void AddChild(TreeNode node)
+        {
+            node.Parent = this;
+            
+            if (LeftChild == null)
+                LeftChild = node;
+            else if (RightChild == null)
+                RightChild = node;
+            else if (LeftChild.ChildrenCount <= RightChild.ChildrenCount)
+                LeftChild.AddChild(node);
+            else
+                RightChild.AddChild(node);
+        }
+
         public void AddChild(int data)
         {
-            if (LeftChild == null)
-                LeftChild = new TreeNode(data, this);
-            else if (RightChild == null)
-                RightChild = new TreeNode(data, this);
-            else
-                if (LeftChild.ChildrenCount <= RightChild.ChildrenCount)
-                    LeftChild.AddChild(data);
-                else
-                    RightChild.AddChild(data);
+            AddChild(new TreeNode(data));
+        }
+
+        public void RemoveChild(TreeNode node)
+        {
+            if (LeftChild == node)
+                LeftChild = null;
+            if (RightChild == node)
+                RightChild = null;
         }
     }
 }
